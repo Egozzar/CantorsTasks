@@ -1,8 +1,21 @@
-function truncate(str, maxlength) {
-	return str.length <= maxlength ? str :
-		     str.slice(0, maxlength - 1) + "…";
+"use strict";
+
+function sumInput() {
+	let arr = [];
+	let sum = 0;
+	let val;
+
+	while (true) {
+		 val = prompt('Введите значение', '');
+		if (val === null || val === '' || !isFinite(val)) break;
+		arr.push(val);
+	}
+
+	for (let val of arr) {
+		sum += +val;
+	}
+
+	return sum;
 }
 
-alert( truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) );// "Вот, что мне хотело…"
-
-alert( truncate("Всем привет!", 20) );// "Всем привет!"
+alert( sumInput() );
