@@ -1,5 +1,8 @@
-function randomInteger(min, max) {
-	return  min + Math.floor( Math.random() * (max - min + 1) );
+function checkSpam(str) {
+	str = str.toLowerCase();
+	return str.includes('xxx') || str.includes('viagra');
 }
 
-alert( randomInteger(5, 17) );
+alert( checkSpam('buy ViAgRA now') );
+alert( checkSpam('free xxxxx') );
+alert( checkSpam("innocent rabbit") );
