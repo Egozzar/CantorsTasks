@@ -1,17 +1,14 @@
-let userName = prompt('Who is here?', '');
+function readNumber() {
+	let val;
 
-if (userName === '' || userName === null) {
-	alert('Canceled');
-} else if (userName != 'Admin') {
-	alert(`I don't know you`);
-} else {
-	let password = prompt('Enter your password');
+	while (true) {
+		val = prompt('Введите число', '');
 
-	if (password === null) {
-		alert('Canceled');
-	} else if (password != `I'm chief`) {
-		alert('Wrong password');
-	} else {
-		alert('Hello!');
+		if (val === null || val === '') return null;
+		if ( isFinite(val) ) break;
 	}
+
+	return +val;
 }
+
+alert( readNumber() );
