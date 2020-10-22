@@ -1,14 +1,5 @@
-function readNumber() {
-	let val;
-
-	while (true) {
-		val = prompt('Введите число', '');
-
-		if (val === null || val === '') return null;
-		if ( isFinite(val) ) break;
-	}
-
-	return +val;
+function randomInteger(min, max) {
+	return  min + Math.floor( Math.random() * (max - min + 1) );
 }
 
-alert( readNumber() );
+alert( randomInteger(5, 17) );
