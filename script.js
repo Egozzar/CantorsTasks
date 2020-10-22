@@ -1,23 +1,20 @@
 "use strict";
 
-function getMaxSubSum(arr) {
-	let sum = 0;
-	let maxSum = 0;
+let calculator = {
+	read() {
+		this.a = +prompt('Введите первое число', '');
+		this.b = +prompt('Введите второе число', '');
+	},
 
-	for (let val of arr) {
-		sum += val;
+	sum() {
+		return this.a + this.b;
+	},
 
-		if (sum < 0) sum = 0;
-		if (sum > maxSum) maxSum = sum;
+	mul() {
+		return this.a * this.b;
 	}
-
-	return maxSum;
 }
 
-alert( getMaxSubSum([-1, 2, 3, -9]) );// 5 (сумма выделенных)
-alert( getMaxSubSum([2, -1, 2, 3, -9]) );// 6
-alert( getMaxSubSum([-1, 2, 3, -9, 11]) );// 11
-alert( getMaxSubSum([-2, -1, 1, 2]) );// 3
-alert( getMaxSubSum([100, -9, 2, -3, 5]) );// 100
-alert( getMaxSubSum([1, 2, 3]) );// 6 (берём все)
-alert( getMaxSubSum([-1, -2, -3]) );// 0
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
