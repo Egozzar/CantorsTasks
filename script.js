@@ -1,8 +1,8 @@
-function checkSpam(str) {
-	str = str.toLowerCase();
-	return str.includes('xxx') || str.includes('viagra');
+function truncate(str, maxlength) {
+	return str.length <= maxlength ? str :
+		     str.slice(0, maxlength - 1) + "…";
 }
 
-alert( checkSpam('buy ViAgRA now') );
-alert( checkSpam('free xxxxx') );
-alert( checkSpam("innocent rabbit") );
+alert( truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) );// "Вот, что мне хотело…"
+
+alert( truncate("Всем привет!", 20) );// "Всем привет!"
