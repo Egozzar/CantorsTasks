@@ -1,20 +1,22 @@
 "use strict";
 
-let calculator = {
-	read() {
+function  Calculator() {
+	this.read = function() {
 		this.a = +prompt('Введите первое число', '');
 		this.b = +prompt('Введите второе число', '');
-	},
+	};
 
-	sum() {
-		return this.a + this.b;
-	},
-
-	mul() {
+	this.mul = function() {
 		return this.a * this.b;
+	};
+
+	this.sum = function() {
+		return this.a + this.b;
 	}
 }
 
+let calculator = new Calculator();
 calculator.read();
-alert( calculator.sum() );
-alert( calculator.mul() );
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
