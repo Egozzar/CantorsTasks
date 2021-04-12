@@ -1,17 +1,11 @@
 "use strict";
 
-function camelize(str) {
-	let array = str.split('-');
-	let res = array.map( (val, ind) => {
-
-		if (ind) {
-			return val[0].toUpperCase() + val.slice(1);
-		} else return val;
-	});
-
-	return res.join('');
+function filterRange(arr, a, b) {
+	return arr.filter( (val) => val >= a && val <= b);
 }
 
-alert( camelize("background-color") ); // == 'backgroundColor'
-alert( camelize("list-style-image") ); // == 'listStyleImage'
-alert( camelize("-webkit-transition") ); // == 'WebkitTransition'
+let arr = [5, 3, 8, 1];
+let filtered = filterRange(arr, 1, 4);
+
+alert( filtered ); // 3,1 (совпадающие значения)
+alert( arr ); // 5,3,8,1 (без изменений)
