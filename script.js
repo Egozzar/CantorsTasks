@@ -1,16 +1,17 @@
 "use strict";
 
-function Accumulator(startingValue) {
-	this.value = startingValue;
+function camelize(str) {
+	let array = str.split('-');
+	let res = array.map( (val, ind) => {
 
-	this.read = function() {
-		this.value += +prompt('Введите число', '');
-	}
+		if (ind) {
+			return val[0].toUpperCase() + val.slice(1);
+		} else return val;
+	});
+
+	return res.join('');
 }
 
-let accumulator = new Accumulator(1); // начальное значение 1
-
-accumulator.read(); // прибавит ввод prompt к текущему значению
-accumulator.read(); // прибавит ввод prompt к текущему значению
-
-alert(accumulator.value); // выведет сумму этих значений
+alert( camelize("background-color") ); // == 'backgroundColor'
+alert( camelize("list-style-image") ); // == 'listStyleImage'
+alert( camelize("-webkit-transition") ); // == 'WebkitTransition'
