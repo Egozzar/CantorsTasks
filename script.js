@@ -1,25 +1,20 @@
 "use strict";
 
-let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
-let petya = { name: "Петя", surname: "Иванов", id: 2 };
-let masha = { name: "Маша", surname: "Петрова", id: 3 };
+function unique(arr) {
+	let array = [];
 
-let users = [ vasya, petya, masha ];
-
-let usersMapped = users.map( (val) => {
-	return {
-		fullName : `${val.name} ${val.surname}`,
-		id : val.id,
+	for (let elem of arr) {
+		if ( array.includes(elem) ) continue;
+		array.push(elem);
 	}
-})
 
-	/*
-	usersMapped = [
-		{ fullName: "Вася Пупкин", id: 1 },
-		{ fullName: "Петя Иванов", id: 2 },
-		{ fullName: "Маша Петрова", id: 3 }
-	]
-	*/
+	return array;
+}
 
-alert( usersMapped[0].id ) // 1
-alert( usersMapped[0].fullName ) // Вася Пупкин
+let strings = ["кришна", "кришна", "харе", "харе",
+	"харе", "харе", "кришна", "кришна", ":-O"
+];
+
+alert( unique(strings) ); // кришна, харе, :-O
+
+
