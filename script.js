@@ -1,15 +1,32 @@
 "use strict";
 
-function filterRangeInPlace(arr, a, b) {
-	for (let i = 0; i < arr.length; i++) {
+function Calculator() {
+	this.data = {
+		'+' : (a, b) => a + b,
+		'-' : (a, b) => a - b,
+	}
 
-		if (arr[i] < a || arr[i] > b) {
-			arr.splice(i--, 1);
+	this.calculate = function(str) {
+		let arr = str.split(' ');
+		let num1 = +arr[0], num2 = +arr[2], op = arr[1];
+
+		if (!isFinite(num1) || !isFinite(num2) || !this.data[op]) {
+			return 'Error';
 		}
+
+		return this.data[op](num1, num2);
+	}
+
+	this.addMethod = function(str, func) {
+		this.data[str] = func;
 	}
 }
 
-let arr = [5, 3, 8, 1];
 
-filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
-alert( arr ); // [3, 1]
+let powerCalc = new Calculator;
+powerCalc.addMethod("*", (a, b) => a * b);
+powerCalc.addMethod("/", (a, b) => a / b);
+powerCalc.addMethod("**", (a, b) => a ** b);
+
+let result = powerCalc.calculate("2 ** 3");
+alert( result ); // 8
