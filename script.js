@@ -1,31 +1,12 @@
 "use strict";
 
-// фильтрация на объекте
-/*function aclean(array) {
-	let obj = {};
+function getWeekDay(date) {
+	let arr = ['ВС','ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ',];
+	let day = date.getDay();
 
-	array.forEach(val => {
-		let res = val.toLowerCase().split('').sort();
-		obj[res] = val;
-	});
-
-	return Object.values(obj);
-}*/
-
-//фильтрация на map
-function aclean(array) {
-	let map = new Map();
-
-	array.forEach(val => {
-		let res = val.toLowerCase().split('').sort().join('');
-		map.set(res, val);
-	});
-
-	return Array.from( map.values() );
+	return arr[day];
 }
 
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-
-alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
-
+let date = new Date(2012, 0, 3);  // 3 января 2012 года
+alert( getWeekDay(date) );        // нужно вывести "ВТ"
 
