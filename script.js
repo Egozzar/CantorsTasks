@@ -1,41 +1,48 @@
 "use strict";
-// цикл с двумя переменными
-/*function fib(n) {
-	let a = 1, b = 1;
 
-	for (let i = 3; i <= n; i++) {
+let list = {
+	value: 1,
+	next: {
+		value: 2,
+		next: {
+			value: 3,
+			next: {
+				value: 4,
+				next: null
+			}
+		}
+	}
+};
+// вывод через цикл
+/*function printList(obj) {
+	while (obj) {
+		alert(obj.value);
+		obj = obj.next;
+	}
+}*/
 
-		if (a > b) b += a;
-		else a += b;
+// вывод через цикл в обратном порядке
+/*function printList(obj) {
+	let arr = [];
+
+	while (obj) {
+		arr.unshift(obj.value);
+		obj = obj.next;
 	}
 
-	return Math.max(a, b);
+	arr.forEach(alert);
 }*/
-// цикл с тремя переменными
-/*function fib(n) {
-	let a = 1, b = 1, c;
+//вывод через рекурсию
+/*function printList(obj) {
+	alert(obj.value);
 
-	for (let i = 3; i <= n; i++) {
-		c = a + b;
-		a = b;
-		b = c;
-	}
-
-	return b;
+	if (obj.next) printList(obj.next);
 }*/
-// рекурсия простая
-/*function fib(n) {
-	return n > 2 ? fib(n - 1) + fib(n - 2) : 1;
-}*/
-// рекурсия хвостовая
-function fib(n) {
-	return function fibIn(n, a, b) {
+//вывод через рекурсию в обратном порядке
+function printList(obj) {
+	if (obj.next) printList(obj.next);
 
-		return n > 0 ? fibIn(n - 1, b, a + b) :
-			     n < 0 ? fibIn(n + 1, b, a - b) : a;
-	}(n, 0, 1);
+	alert(obj.value);
 }
 
-
-alert( fib(7) ); // 13
-alert( fib(15) ); // 610
+printList(list);
