@@ -1,13 +1,21 @@
 "use strict";
 
-/*function sum(a) {
-	return function(b) {
+function inBetween(a, b) {
+	return function(val) {
 
-		return a + b;
+		return val >= a && val <= b;
 	}
-}*/
+}
 
-let sum = a => b => a + b;
+function inArray(arr) {
+	return function(val) {
 
-alert( sum(1)(2) );// 3
-alert( sum(5)(-1) );// 4
+		return arr.includes(val);
+	}
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
