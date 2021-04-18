@@ -1,20 +1,21 @@
 "use strict";
+// цикл
+/*function sumTo(n) {
+	let sum = 0;
 
-let room = {
-	number: 23
-};
+	while (n) {
+		sum += n--;
+	}
 
-let meetup = {
-	title: "Совещание",
-	occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
-	place: room
-};
+	return sum;
+}*/
+// рекурсия
+/*function sumTo(n) {
+	return n ? n + sumTo(n - 1) : 0;
+}*/
+//формула Гаусса
+function sumTo(n) {
+	return (n + 1) * (n / 2);
+}
 
-// цикличные ссылки
-room.occupiedBy = meetup;
-meetup.self = meetup;
-
-alert( JSON.stringify(meetup, function replacer(key, value) {
-	if (value === meetup && key) return undefined;
-	return value;
-}));
+alert( sumTo(100) ); // 5050
