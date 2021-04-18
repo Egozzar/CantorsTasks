@@ -1,21 +1,20 @@
 "use strict";
 
-function inBetween(a, b) {
-	return function(val) {
+let users = [
+	{ name: "John", age: 20, surname: "Johnson" },
+	{ name: "Pete", age: 18, surname: "Peterson" },
+	{ name: "Ann", age: 19, surname: "Hathaway" }
+];
 
-		return val >= a && val <= b;
+function byField(fieldName) {
+	return function(a, b) {
+
+		return a[fieldName] > b[fieldName] ? 1 : -1;
 	}
 }
 
-function inArray(arr) {
-	return function(val) {
+users.sort( byField('name') );
+alert( JSON.stringify(users) );
 
-		return arr.includes(val);
-	}
-}
-
-let arr = [1, 2, 3, 4, 5, 6, 7];
-
-alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
-
-alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+users.sort( byField('age') );
+alert( JSON.stringify(users) );
