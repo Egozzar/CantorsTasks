@@ -1,20 +1,23 @@
 "use strict";
 
-let users = [
-	{ name: "John", age: 20, surname: "Johnson" },
-	{ name: "Pete", age: 18, surname: "Peterson" },
-	{ name: "Ann", age: 19, surname: "Hathaway" }
-];
+function makeArmy() {
+	let shooters = [];
 
-function byField(fieldName) {
-	return function(a, b) {
-
-		return a[fieldName] > b[fieldName] ? 1 : -1;
+	let i = 0;
+	while (i < 10) {
+		+function(a) {
+			let shooter = function () { // функция shooter
+				alert(a); // должна выводить порядковый номер
+			};
+			shooters.push(shooter);
+			i++;
+		}(i);
 	}
+
+	return shooters;
 }
 
-users.sort( byField('name') );
-alert( JSON.stringify(users) );
+let army = makeArmy();
 
-users.sort( byField('age') );
-alert( JSON.stringify(users) );
+army[0](); // у 0-го стрелка будет номер 10
+army[5](); // и у 5-го стрелка тоже будет номер 10
