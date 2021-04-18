@@ -1,48 +1,13 @@
 "use strict";
 
-let list = {
-	value: 1,
-	next: {
-		value: 2,
-		next: {
-			value: 3,
-			next: {
-				value: 4,
-				next: null
-			}
-		}
-	}
-};
-// вывод через цикл
-/*function printList(obj) {
-	while (obj) {
-		alert(obj.value);
-		obj = obj.next;
+/*function sum(a) {
+	return function(b) {
+
+		return a + b;
 	}
 }*/
 
-// вывод через цикл в обратном порядке
-/*function printList(obj) {
-	let arr = [];
+let sum = a => b => a + b;
 
-	while (obj) {
-		arr.unshift(obj.value);
-		obj = obj.next;
-	}
-
-	arr.forEach(alert);
-}*/
-//вывод через рекурсию
-/*function printList(obj) {
-	alert(obj.value);
-
-	if (obj.next) printList(obj.next);
-}*/
-//вывод через рекурсию в обратном порядке
-function printList(obj) {
-	if (obj.next) printList(obj.next);
-
-	alert(obj.value);
-}
-
-printList(list);
+alert( sum(1)(2) );// 3
+alert( sum(5)(-1) );// 4
