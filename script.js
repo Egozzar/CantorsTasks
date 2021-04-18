@@ -1,21 +1,18 @@
 "use strict";
 // цикл
-/*function sumTo(n) {
-	let sum = 0;
+/*function factorial(n) {
+	let res = 1;
 
 	while (n) {
-		sum += n--;
+		res *= n--;
 	}
 
-	return sum;
+	return res;
 }*/
 // рекурсия
-/*function sumTo(n) {
-	return n ? n + sumTo(n - 1) : 0;
-}*/
-//формула Гаусса
-function sumTo(n) {
-	return (n + 1) * (n / 2);
+function factorial(n) {
+
+	return n ? n * factorial(n - 1) : 1;
 }
 
-alert( sumTo(100) ); // 5050
+alert( factorial(5) ); // 120
