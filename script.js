@@ -1,22 +1,27 @@
 "use strict";
+// setInterval
+/*function printNumbers(from, to) {
+	let i = from;
 
-function sum(a) {
-	let res = a;
+	let timer = setInterval( () => {
+		if (i <= to) {
+			console.log(i++);
+		} else {
+			clearInterval(timer);
+		}
+	}, 1000);
+}*/
+// setTimeout
+function printNumbers(from, to) {
+	let i = from;
 
-	function sumIn(b) {
-		res += b;
-		return sumIn;
-	}
+	setTimeout(function run() {
 
-	sumIn.toString = function() {
-		return res;
-	}
-
-	return sumIn;
+		if (i <= to) {
+			console.log(i++);
+			setTimeout(run, 1000);
+		}
+	}, 1000);
 }
 
-alert( sum(1)(2) ); // 1 + 2
-alert( sum(1)(2)(3) ); // 1 + 2 + 3
-alert( sum(5)(-1)(2) ); // 6
-alert( sum(6)(-1)(-2)(-3) ); // 0
-alert( sum(0)(1)(2)(3)(4)(5) ); // 15
+printNumbers(4, 9);
