@@ -1,32 +1,22 @@
 "use strict";
 
-function makeCounter() {
-	let count = 0;
+function sum(a) {
+	let res = a;
 
-	function func() {
-		return count++;
+	function sumIn(b) {
+		res += b;
+		return sumIn;
 	}
 
-	func.set = function(val) {
-		count = val;
+	sumIn.toString = function() {
+		return res;
 	}
 
-	func.decrease = function() {
-		count--;
-	}
-
-	return func;
+	return sumIn;
 }
 
-let counter = makeCounter();
-
-alert( counter() ); // 0
-alert( counter() ); // 1
-
-counter.set(10); // установить новое значение счётчика
-
-alert( counter() ); // 10
-
-counter.decrease(); // уменьшить значение счётчика на 1
-
-alert( counter() ); // 10 (вместо 11)
+alert( sum(1)(2) ); // 1 + 2
+alert( sum(1)(2)(3) ); // 1 + 2 + 3
+alert( sum(5)(-1)(2) ); // 6
+alert( sum(6)(-1)(-2)(-3) ); // 0
+alert( sum(0)(1)(2)(3)(4)(5) ); // 15
