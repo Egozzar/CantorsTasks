@@ -1,25 +1,24 @@
 "use strict";
 
-function work(a, b) {
-	alert( a + b ); // произвольная функция или метод
-}
+function debounce(func, ms) {
+	let drag = null;
 
-function spy(func) {
-	f.calls = [];
+	return function(...arg) {
 
-	function f (...arg) {
-		f.calls.push(arg);
-		return func.apply(this, arg);
+		if (!drag) {
+			func.apply(this, arg);
+			drag = true;
+			setTimeout( () => drag = null, ms);
+		}
 	}
-
-	return f;
 }
 
-work = spy(work);
 
-work(1, 2); // 3
-work(4, 5); // 9
+let f = debounce(alert, 1000);
 
-for (let args of work.calls) {
-	alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
-}
+f(1); // выполняется немедленно
+f(2); // проигнорирован
+
+setTimeout( () => f(3), 100); // проигнорирован (прошло только 100 мс)
+setTimeout( () => f(4), 1100); // выполняется
+setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)
