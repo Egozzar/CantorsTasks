@@ -7,16 +7,11 @@ function askPassword(ok, fail) {
 }
 
 let user = {
-	name: 'Вася',
+	name: 'John',
 
-	loginOk() {
-		alert(`${this.name} logged in`);
-	},
-
-	loginFail() {
-		alert(`${this.name} failed to log in`);
-	},
-
+	login(result) {
+		alert( this.name + (result ? ' logged in' : ' failed to log in') );
+	}
 };
 
-askPassword(() => user.loginOk(), user.loginFail.bind(user));
+askPassword(user.login.bind(user, true), user.login.bind(user, false));
