@@ -1,27 +1,25 @@
 "use strict";
-// setInterval
-/*function printNumbers(from, to) {
-	let i = from;
 
-	let timer = setInterval( () => {
-		if (i <= to) {
-			console.log(i++);
-		} else {
-			clearInterval(timer);
-		}
-	}, 1000);
-}*/
-// setTimeout
-function printNumbers(from, to) {
-	let i = from;
-
-	setTimeout(function run() {
-
-		if (i <= to) {
-			console.log(i++);
-			setTimeout(run, 1000);
-		}
-	}, 1000);
+function work(a, b) {
+	alert( a + b ); // произвольная функция или метод
 }
 
-printNumbers(4, 9);
+function spy(func) {
+	f.calls = [];
+
+	function f (...arg) {
+		f.calls.push(arg);
+		return func.apply(this, arg);
+	}
+
+	return f;
+}
+
+work = spy(work);
+
+work(1, 2); // 3
+work(4, 5); // 9
+
+for (let args of work.calls) {
+	alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+}
