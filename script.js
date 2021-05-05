@@ -1,13 +1,20 @@
 "use strict";
 
-Function.prototype.defer = function(ms) {
-	return function () {
-		setTimeout(this, ms, ...arguments)
-	}.bind(this);
+let dictionary = Object.create(null);
+
+// ваш код, который добавляет метод dictionary.toString
+Object.defineProperty(dictionary, 'toString', {
+	value : () => Object.keys(dictionary).join(),
+	configurable : true,
+})
+// добавляем немного данных
+dictionary.apple = "Apple";
+dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ
+
+// только apple и __proto__ выведены в цикле
+for(let key in dictionary) {
+	alert(key); // "apple", затем "__proto__"
 }
 
-function f(a, b) {
-	alert( a + b );
-}
-
-f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+// ваш метод toString в действии
+alert(dictionary); // "apple,__proto__"
