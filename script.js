@@ -1,17 +1,11 @@
 "use strict";
 
-function askPassword(ok, fail) {
-	let password = prompt("Password?", '');
-	if (password == "rockstar") ok();
-	else fail();
+Function.prototype.defer = function(ms) {
+	setTimeout(this, ms);
 }
 
-let user = {
-	name: 'John',
+function f() {
+	alert("Hello!");
+}
 
-	login(result) {
-		alert( this.name + (result ? ' logged in' : ' failed to log in') );
-	}
-};
-
-askPassword(user.login.bind(user, true), user.login.bind(user, false));
+f.defer(1000); // выведет "Hello!" через 1 секунду
