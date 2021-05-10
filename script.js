@@ -1,7 +1,15 @@
 "use strict";
 
-function delay(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+async function loadJson(url) {
+	let response = await fetch(url);
+
+	if (response.status === 200) {
+		let res = await response.json();
+
+		return res;
+	}
+	throw new Error(response.status);
 }
 
-delay(3000).then(() => alert('выполнилось через 3 секунды'));
+loadJson('no-such-user.json') // (3)
+	.catch(alert); // Error: 404
