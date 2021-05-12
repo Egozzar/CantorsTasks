@@ -1,13 +1,16 @@
 "use strict";
 
-async function wait() {
-	await new Promise(resolve => setTimeout(resolve, 1000));
+function* pseudoRandom(seed) {
+	let val = seed;
 
-	return 10;
+	for (let i = 0; i < 3; i++) {
+		val = val  * 16807 % 2147483647;
+		yield val;
+	}
 }
 
-function f() {
-	wait().then(alert);
-}
+let generator = pseudoRandom(1);
 
-f();
+alert(generator.next().value); // 16807
+alert(generator.next().value); // 282475249
+alert(generator.next().value); // 1622650073
