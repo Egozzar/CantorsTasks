@@ -1,34 +1,15 @@
 "use strict";
 
-let user = {
-	name: "John"
-};
+let array = [1, 2, 3];
 
-function wrap(target) {
-	return new Proxy(target, {
-		get(target, p, receiver) {
-			if (p in target) {
-				let val = Reflect.get(...arguments);
-				return val.bind ? val.bind(target) : val;
-			}
-			throw new MyError('Такого свойства не существует');
-		},
-	});
-}
+array = new Proxy(array, {
+	get(target, p, receiver) {
+		if (p < 0) {
+			return target[target.length + +p];
+		}
+		return Reflect.get(...arguments);
+	},
+});
 
-class MyError extends Error {
-	constructor(props) {
-		super(props);
-		this.name = this.constructor.name;
-	}
-
-}
-
-user = wrap(user);
-
-try {
-	alert(user.name); // John
-	alert(user.age); // Ошибка: такого свойства не существует
-} catch (e) {
-	alert(e);
-}
+alert( array[-1] ); // 3
+alert( array[-2] ); // 2
