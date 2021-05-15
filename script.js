@@ -1,15 +1,22 @@
 "use strict";
 
-let array = [1, 2, 3];
+function makeObservable(target) {
+	target.data = [];
+	target.observe = (func) => target.data.push(func);
 
-array = new Proxy(array, {
-	get(target, p, receiver) {
-		if (p < 0) {
-			return target[target.length + +p];
+	return new Proxy(target, {
+		set(target, p, value, receiver) {
+			target.data.forEach( elem => elem(p, value));
+			return Reflect.set(...arguments);
 		}
-		return Reflect.get(...arguments);
-	},
+	})
+}
+
+let user = {};
+user = makeObservable(user);
+
+user.observe((key, value) => {
+	alert(`SET ${key}=${value}`);
 });
 
-alert( array[-1] ); // 3
-alert( array[-2] ); // 2
+user.name = "John"; // выводит: SET name=John
