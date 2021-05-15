@@ -1,16 +1,34 @@
 "use strict";
 
-function* pseudoRandom(seed) {
-	let val = seed;
+let user = {
+	name: "John"
+};
 
-	for (let i = 0; i < 3; i++) {
-		val = val  * 16807 % 2147483647;
-		yield val;
-	}
+function wrap(target) {
+	return new Proxy(target, {
+		get(target, p, receiver) {
+			if (p in target) {
+				let val = Reflect.get(...arguments);
+				return val.bind ? val.bind(target) : val;
+			}
+			throw new MyError('Такого свойства не существует');
+		},
+	});
 }
 
-let generator = pseudoRandom(1);
+class MyError extends Error {
+	constructor(props) {
+		super(props);
+		this.name = this.constructor.name;
+	}
 
-alert(generator.next().value); // 16807
-alert(generator.next().value); // 282475249
-alert(generator.next().value); // 1622650073
+}
+
+user = wrap(user);
+
+try {
+	alert(user.name); // John
+	alert(user.age); // Ошибка: такого свойства не существует
+} catch (e) {
+	alert(e);
+}
