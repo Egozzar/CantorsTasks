@@ -1,22 +1,8 @@
 "use strict";
 
-function makeObservable(target) {
-	target.data = [];
-	target.observe = (func) => target.data.push(func);
+let animals = ["тигр", "ёж", "енот", "ехидна", "АИСТ", "ЯК"];
 
-	return new Proxy(target, {
-		set(target, p, value, receiver) {
-			target.data.forEach( elem => elem(p, value));
-			return Reflect.set(...arguments);
-		}
-	})
-}
+let collator = new Intl.Collator();
+animals.sort(collator.compare);
 
-let user = {};
-user = makeObservable(user);
-
-user.observe((key, value) => {
-	alert(`SET ${key}=${value}`);
-});
-
-user.name = "John"; // выводит: SET name=John
+alert( animals ); // АИСТ,ёж,енот,ехидна,тигр,ЯК
