@@ -1,16 +1,9 @@
 body {
+	font-size: 3rem;
 	background-color: #D2B48C;
 	color: #116062;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-}
-
-h1 {
-	font-size: 3rem;
-	padding: 35px;
-	background-color: #7BA05B;
-	color: #F2F3F4;
-	border-radius: 50%;
 }
