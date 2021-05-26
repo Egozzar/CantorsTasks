@@ -1,29 +1,11 @@
 "use strict";
 
-let table = document.getElementById('age-table');
-alert(table.rows.length);
+let ul = document.body.querySelector('ul');
+let lis = ul.querySelectorAll('li');
 
-let labels = table.querySelectorAll('label');
-alert(labels.length);
+for (let res of lis) {
+	let text = res.firstChild.data.trim();
+	let lisIn = res.querySelectorAll('li');
 
-let age = table.querySelector('td');
-alert(age.innerHTML);
-
-let form = document.body.querySelector('form[name="search"]');
-alert(form.name);
-
-let input = form.querySelector('input');
-alert(input.type);
-
-let lastInput = form.lastElementChild;
-alert(lastInput.type);
-
-
-
-
-
-
-
-
-
-
+	alert(`${text}: ${lisIn.length}`);
+}
