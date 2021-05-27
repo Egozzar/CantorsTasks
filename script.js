@@ -1,11 +1,9 @@
 "use strict";
 
-let ul = document.body.querySelector('ul');
-let lis = ul.querySelectorAll('li');
+let links = document.querySelectorAll('a[href]');
 
-for (let res of lis) {
-	let text = res.firstChild.data.trim();
-	let lisIn = res.querySelectorAll('li');
-
-	alert(`${text}: ${lisIn.length}`);
-}
+links.forEach(elem => {
+	if ( elem.matches('[href*="://"]:not([href^="http://internal.com"])') ) {
+		elem.style.color = 'orange';
+	}
+})
