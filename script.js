@@ -1,37 +1,15 @@
 "use strict";
 
-let data = {
-	"Рыбы": {
-		"форель": {},
-		"лосось": {}
-	},
+function showChildren(elem) {
+	let lis = elem.querySelectorAll('li');
 
-	"Деревья": {
-		"Огромные": {
-			"секвойя": {},
-			"дуб": {}
-		},
-		"Цветковые": {
-			"яблоня": {},
-			"магнолия": {}
-		}
-	}
-};
+	for (let li of lis) {
+		let num = li.querySelectorAll('li').length;
+		if(!num) continue;
 
-let container = document.getElementById('container');
-
-function createTree(elem, obj) {
-	if (Object.keys(obj).length) {
-		let ul = document.createElement('ul');
-
-		for (let key in obj) {
-			let li = document.createElement('li');
-			li.textContent = key;
-			ul.append(li);
-			createTree(li, obj[key]);
-		}
-		elem.append(ul);
+		li.firstChild.data += ` [${num}]`;
 	}
 }
 
-createTree(container, data);
+let ul = document.body.firstElementChild;
+showChildren(ul);
