@@ -1,9 +1,18 @@
 "use strict";
 
-let links = document.querySelectorAll('a[href]');
+function createList() {
+	let ul = document.createElement('ul');
 
-links.forEach(elem => {
-	if ( elem.matches('[href*="://"]:not([href^="http://internal.com"])') ) {
-		elem.style.color = 'orange';
+	while (true) {
+		let li = document.createElement('li');
+		let exp = prompt('Добавь что-нибудь', '');
+		if (!exp) break;
+
+		li.append(exp);
+		ul.append(li);
 	}
-})
+
+	document.body.append(ul);
+}
+
+createList();
