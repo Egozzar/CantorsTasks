@@ -7,15 +7,3 @@ body {
 	align-items: center;
 	height: 100vh;
 }
-
-.hour {
-	color: #f00;
-}
-
-.min {
-	color: #0f0;
-}
-
-.sec {
-	color: #00f;
-}
