@@ -1,47 +1,25 @@
 "use strict";
 
-function createCalendar(elem, year, month) {
-	month--;
-	let table = document.createElement('table');
-	table.append( createTitle() );
+let timer;
 
-	let date = new Date(year, month);
-	let weekDay = date.getDay();
-	weekDay = weekDay ? weekDay : 7;
-	let last = new Date(year, month + 1, 0);
-	let days = last.getDate();
+function run () {
+	let hour = document.querySelector('.hour');
+	let min = document.querySelector('.min');
+	let sec = document.querySelector('.sec');
 
-	function createTr(from, to, numberDay) {
-		let tr = document.createElement('tr');
-		table.append(tr);
+	let date = new Date();
+	let str = date.toLocaleTimeString();
 
-		while (tr.children.length < 7) {
-			let td = document.createElement('td');
-			td.innerHTML = tr.children.length < numberDay - 1 ? '&nbsp;' :
-				             from <= to ? from++ : '&nbsp;';
-			tr.append(td);
-		}
-
-		if (from <= to) {
-			createTr(from, to);
-		}
-	}
-
-	createTr(1, days, weekDay);
-	document.body.append(table);
+	hour.innerHTML = str.slice(0, 2);
+	min.innerHTML = str.slice(3, 5);
+	sec.innerHTML = str.slice(6);
 }
 
-function createTitle() {
-	let week = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС',];
-	let trTitle = document.createElement('tr');
-
-	week.forEach(elem => {
-		let th = document.createElement('th');
-		th.innerHTML = elem;
-		trTitle.append(th);
-	});
-	return trTitle;
+function clockStart() {
+	timer = setInterval(run, 1000);
+	run();
 }
 
-let calendar = document.getElementById('calendar');
-createCalendar(calendar, 2012, 9);
+function clockStop() {
+	clearInterval(timer);
+}

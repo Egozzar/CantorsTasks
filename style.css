@@ -7,18 +7,15 @@ body {
 	align-items: center;
 	height: 100vh;
 }
-table {
-	border-collapse: collapse;
+
+.hour {
+	color: #f00;
 }
 
-td,
-th {
-	border: 1px solid black;
-	padding: 3px;
-	text-align: center;
+.min {
+	color: #0f0;
 }
 
-th {
-	font-weight: bold;
-	background-color: #E6E6E6;
+.sec {
+	color: #00f;
 }
