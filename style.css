@@ -7,3 +7,14 @@ body {
 	align-items: center;
 	height: 100vh;
 }
+
+th,
+td {
+	border: 2px solid darkred;
+	padding: 10px;
+	text-align: center;
+}
+
+th {
+	background-color: #F0F8FF;
+}
