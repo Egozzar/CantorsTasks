@@ -1,15 +1,25 @@
 "use strict";
-function sorting(element) {
-	let trs = Array.from(element.rows);
-	let trsSort = trs.slice(1).sort( (a, b) => a.cells[0].innerHTML > b.cells[0].innerHTML ? 1 : -1);
-	trsSort.unshift(trs[0]);
 
-	trsSort.forEach((elem) => {
-		element.firstElementChild.append(elem);
-	});
+function showNotification({top = 0, right = 0, className, html}) {
+	let div = document.createElement('div');
+	div.style.top = top + 'px';
+	div.style.right = right + 'px';
+	div.className = 'notification';
+	div.classList.add(className);
+	div.innerHTML = html;
+	document.body.append(div);
+	setTimeout( () => div.remove(), 1000);
 }
 
-let table = document.getElementById('table');
-setTimeout(sorting, 2000, table);
+// test it
+let i = 1;
+setInterval(() => {
+	showNotification({
+		top: 10,
+		right: 10,
+		html: 'Hello ' + i++,
+		className: "welcome"
+	});
+}, 2000);
 
 
