@@ -1,13 +1,24 @@
 "use strict";
 
+document.onclick = function(e) { // показывает координаты точки клика
+	coords.innerHTML = e.clientX + ':' + e.clientY;
+};
+
 let field = document.getElementById('field');
-let width = field.clientWidth;
-let height = field.clientHeight;
+let one = {}, two = {}, three = {}, four = {};
+one.x = field.offsetLeft;
+one.y = field.offsetTop;
 
-let ball = document.getElementById('ball');
-let ballSize = getComputedStyle(ball).width;
+two.x = one.x + field.offsetWidth;
+two.y = one.y + field.offsetHeight;
 
-setTimeout( () => {
-	ball.style.top = height / 2 - (parseInt(ballSize) / 2) + 'px';
-	ball.style.left = width / 2 - (parseInt(ballSize) / 2) + 'px';
-}, 2000);
+three.x = one.x + field.clientLeft;
+three.y = one.y + field.clientTop;
+
+four.x = three.x + field.clientWidth;
+four.y = three.y + field.clientHeight;
+
+alert(`1 - ${one.x} : ${one.y}
+2 - ${two.x} : ${two.y}
+3 - ${three.x} : ${three.y}
+4 - ${four.x} : ${four.y}`);
