@@ -13,17 +13,29 @@ function positionAt(anchor, position, elem) {
 	let anCoords = anchor.getBoundingClientRect();
 
 	switch (position) {
-		case 'top':
+		case 'top-out':
 			elem.style.top = anCoords.top + pageYOffset - elem.offsetHeight + 'px';
 			elem.style.left = anCoords.left + pageXOffset + 'px';
 			break;
-		case 'bottom':
-			elem.style.top = anCoords.bottom + pageYOffset+ 'px';
+		case 'bottom-out':
+			elem.style.top = anCoords.bottom + pageYOffset + 'px';
 			elem.style.left = anCoords.left + pageXOffset + 'px';
 			break;
-		case 'right':
-			elem.style.top = anCoords.top + pageYOffset+ 'px';
+		case 'right-out':
+			elem.style.top = anCoords.top + pageYOffset + 'px';
 			elem.style.left = anCoords.right + pageXOffset + 'px';
+			break;
+		case 'top-in':
+			elem.style.top = anCoords.top + pageYOffset + 'px';
+			elem.style.left = anCoords.left + pageXOffset + 'px';
+			break;
+		case 'bottom-in':
+			elem.style.top = anCoords.bottom + pageYOffset - elem.offsetHeight + 'px';
+			elem.style.left = anCoords.left + pageXOffset + 'px';
+			break;
+		case 'right-in':
+			elem.style.top = anCoords.top + pageYOffset + 'px';
+			elem.style.left = anCoords.right + pageXOffset - elem.offsetWidth + 'px';
 			break;
 	}
 }
@@ -44,6 +56,10 @@ function showNote(anchor, position, html) {
 // test it
 let blockquote = document.querySelector('blockquote');
 
-showNote(blockquote, "top", "note above");
-showNote(blockquote, "right", "note at the right");
-showNote(blockquote, "bottom", "note below");
+showNote(blockquote, "top-out", "note above-out");
+showNote(blockquote, "right-out", "note at the right-out");
+showNote(blockquote, "bottom-out", "note below-out");
+
+showNote(blockquote, "top-in", "note above-in");
+showNote(blockquote, "right-in", "note at the right-in");
+showNote(blockquote, "bottom-in", "note below-in");
