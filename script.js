@@ -11,18 +11,19 @@
  */
 function positionAt(anchor, position, elem) {
 	let anCoords = anchor.getBoundingClientRect();
+
 	switch (position) {
 		case 'top':
-			elem.style.top = anCoords.top - elem.offsetHeight + 'px';
-			elem.style.left = anCoords.left + 'px';
+			elem.style.top = anCoords.top + pageYOffset - elem.offsetHeight + 'px';
+			elem.style.left = anCoords.left + pageXOffset + 'px';
 			break;
 		case 'bottom':
-			elem.style.top = anCoords.bottom + 'px';
-			elem.style.left = anCoords.left + 'px';
+			elem.style.top = anCoords.bottom + pageYOffset+ 'px';
+			elem.style.left = anCoords.left + pageXOffset + 'px';
 			break;
 		case 'right':
-			elem.style.top = anCoords.top + 'px';
-			elem.style.left = anCoords.right + 'px';
+			elem.style.top = anCoords.top + pageYOffset+ 'px';
+			elem.style.left = anCoords.right + pageXOffset + 'px';
 			break;
 	}
 }
