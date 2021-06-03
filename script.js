@@ -1,24 +1,48 @@
 "use strict";
 
-document.onclick = function(e) { // показывает координаты точки клика
-	coords.innerHTML = e.clientX + ':' + e.clientY;
-};
+/**
+ * Позиционирует элемент elem относительно элемента anchor в соответствии со значением position.
+ *
+ * @param {Node} anchor     элемент, около которого позиционируется другой элемент
+ * @param {string} position одно из: top/right/bottom
+ * @param {Node} elem       элемент, который позиционируется
+ *
+ * Оба элемента elem и anchor должны присутствовать в документе
+ */
+function positionAt(anchor, position, elem) {
+	let anCoords = anchor.getBoundingClientRect();
+	switch (position) {
+		case 'top':
+			elem.style.top = anCoords.top - elem.offsetHeight + 'px';
+			elem.style.left = anCoords.left + 'px';
+			break;
+		case 'bottom':
+			elem.style.top = anCoords.bottom + 'px';
+			elem.style.left = anCoords.left + 'px';
+			break;
+		case 'right':
+			elem.style.top = anCoords.top + 'px';
+			elem.style.left = anCoords.right + 'px';
+			break;
+	}
+}
 
-let field = document.getElementById('field');
-let one = {}, two = {}, three = {}, four = {};
-one.x = field.offsetLeft;
-one.y = field.offsetTop;
+/**
+ * Показывает заметку с заданным содержимым на заданной позиции
+ * относительно элемента anchor.
+ */
+function showNote(anchor, position, html) {
+	let note = document.createElement('div');
+	note.className = "note";
+	note.innerHTML = html;
+	document.body.append(note);
 
-two.x = one.x + field.offsetWidth;
-two.y = one.y + field.offsetHeight;
+	setTimeout(positionAt, 1000, anchor, position, note);
+}
 
-three.x = one.x + field.clientLeft;
-three.y = one.y + field.clientTop;
+// test it
+let blockquote = document.querySelector('blockquote');
 
-four.x = three.x + field.clientWidth;
-four.y = three.y + field.clientHeight;
-
-alert(`1 - ${one.x} : ${one.y}
-2 - ${two.x} : ${two.y}
-3 - ${three.x} : ${three.y}
-4 - ${four.x} : ${four.y}`);
+showNote(blockquote, "top", "note above");
+showNote(blockquote, "right", "note at the right");
+showNote(blockquote, "bottom", "note below");
