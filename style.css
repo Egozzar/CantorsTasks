@@ -1,4 +1,4 @@
-body {
+/*body {
 	font-size: 3rem;
 	background-color: #FFFDD0;
 	color: #734A12;
@@ -6,13 +6,23 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+}*/
+#field {
+	width: 700px;
+	border: 20px groove saddlebrown;
+	background-color: #00FF00;
+	overflow: hidden;
+	margin: 300px auto;
+	font-size: 1rem;
 }
 
-input {
-	padding: 20px;
-	margin: 50px;
+body {
+	height: 2000px;
 	font-size: 2rem;
-	background-color: #734A12;
-	color: #FFFDD0;
-	border: 2px solid #FFFDD0;
+	background-color: #FFFDD0;
+	color: #734A12;
+}
+
+#ball {
+	transition: 0.2s all;
 }
