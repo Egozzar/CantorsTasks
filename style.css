@@ -1,28 +1,22 @@
-/*body {
+body {
 	font-size: 3rem;
 	background-color: #FFFDD0;
 	color: #734A12;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 100vh;
-}*/
-#field {
-	width: 700px;
-	border: 20px groove saddlebrown;
-	background-color: #00FF00;
-	overflow: hidden;
-	margin: 300px auto;
-	font-size: 1rem;
 }
 
-body {
-	height: 2000px;
+span:before {
+	content: '▶';
+	color: #0f0;
+}
+
+.click:before {
+	content: '▼';
+	color: #0f0;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0 0 0 10px;
 	font-size: 2rem;
-	background-color: #FFFDD0;
-	color: #734A12;
-}
-
-#ball {
-	transition: 0.2s all;
 }
