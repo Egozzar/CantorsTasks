@@ -1,22 +1,42 @@
-body {
+/*body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 3rem;
 	background-color: #FFFDD0;
 	color: #734A12;
 	height: 100vh;
+}*/
+
+body {
+	margin: 10px auto;
+	width: 470px;
 }
 
-span:before {
-	content: '▶';
-	color: #0f0;
+h3 {
+	margin: 0;
+	padding-bottom: .3em;
+	font-size: 1.1em;
 }
 
-.click:before {
-	content: '▼';
-	color: #0f0;
+p {
+	margin: 0;
+	padding: 0 0 .5em;
 }
 
-ul {
-	list-style-type: none;
-	margin: 0 0 0 10px;
-	font-size: 2rem;
+.pane {
+	background: #edf5e1;
+	padding: 10px 20px 10px;
+	border-top: solid 2px #c4df9b;
+}
+
+.remove-button {
+	font-size: 110%;
+	color: darkred;
+	right: 10px;
+	width: 24px;
+	height: 24px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
 }

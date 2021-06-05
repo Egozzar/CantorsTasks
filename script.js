@@ -1,13 +1,14 @@
 "use strict";
 
-let title = document.querySelector('span');
-let ul = document.querySelector('ul');
-ul.hidden = true;
-title.style.cursor = 'pointer';
+let panes = document.querySelectorAll('.pane');
 
-title.addEventListener('click', touchTitle);
+panes.forEach( elem => {
+	let button = document.createElement('button');
+	button.innerHTML = '[x]';
+	button.className = 'remove-button'
+	button.style.float = 'right';
+	elem.firstElementChild.append(button);
 
-function touchTitle() {
-	ul.hidden = !ul.hidden;
-	title.classList.toggle('click');
-}
+	button.onclick = () => elem.hidden = true;
+});
+
