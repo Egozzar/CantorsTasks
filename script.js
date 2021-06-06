@@ -1,12 +1,14 @@
 "use strict";
 
-let container = document.getElementById('container');
+let tree = document.getElementById('tree');
+let lis = tree.querySelectorAll('li');
+lis.forEach(elem => {
+	elem.insertAdjacentHTML('afterbegin', '<span></span>');
+	elem.firstChild.append(elem.firstChild.nextSibling);
+})
 
-container.addEventListener('click', function(event) {
-	let tar = event.target.closest('.remove-button');
-
-	if (!tar) return;
-
-	tar.parentElement.hidden = true;
+tree.addEventListener('click', (event) => {
+	let tar = event.target.closest('span');
+	let firstUl = tar?.parentElement.querySelector('ul');
+	firstUl?.classList.toggle('hidden');
 });
-
