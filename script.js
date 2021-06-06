@@ -1,14 +1,12 @@
 "use strict";
 
-let panes = document.querySelectorAll('.pane');
+let container = document.getElementById('container');
 
-panes.forEach( elem => {
-	let button = document.createElement('button');
-	button.innerHTML = '[x]';
-	button.className = 'remove-button'
-	button.style.float = 'right';
-	elem.firstElementChild.append(button);
+container.addEventListener('click', function(event) {
+	let tar = event.target.closest('.remove-button');
 
-	button.onclick = () => elem.hidden = true;
+	if (!tar) return;
+
+	tar.parentElement.hidden = true;
 });
 
