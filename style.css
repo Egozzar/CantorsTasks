@@ -1,18 +1,23 @@
 body {
-/*	display: flex;
+	display: flex;
 	justify-content: center;
-	align-items: center;*/
+	align-items: center;
 	font-size: 2rem;
 	background-color: #FFFDD0;
 	color: #734A12;
 	height: 100vh;
 }
-span {
+th, td {
+	border: 2px solid #734A12;
+	padding: 6px;
+	text-align: center;
+	width: 150px;
+}
+th {
 	cursor: pointer;
+	background-color: #734A12;
+	color: #FFFDD0;
 }
-span:hover {
-	font-weight: bold;
-}
-.hidden {
-	display: none;
+th:hover {
+	color: #F2F3F4;
 }

@@ -1,14 +1,22 @@
 "use strict";
 
-let tree = document.getElementById('tree');
-let lis = tree.querySelectorAll('li');
-lis.forEach(elem => {
-	elem.insertAdjacentHTML('afterbegin', '<span></span>');
-	elem.firstChild.append(elem.firstChild.nextSibling);
-})
+let table = document.getElementById('grid');
+let trBody = table.querySelectorAll('tbody>tr');
+let trBodyArr = Array.from(trBody);
 
-tree.addEventListener('click', (event) => {
-	let tar = event.target.closest('span');
-	let firstUl = tar?.parentElement.querySelector('ul');
-	firstUl?.classList.toggle('hidden');
+document.addEventListener('click', (event) => {
+	let tar = event.target.closest('[data-type]');
+	if (!tar) return;
+
+	if (tar.dataset.type == 'string') {
+		trBodyArr.sort( (a, b) => {
+			return a.lastElementChild.innerHTML > b.lastElementChild.innerHTML ? 1 : -1;
+		});
+	} else {
+		trBodyArr.sort( (a, b) => {
+			return a.firstElementChild.innerHTML - b.firstElementChild.innerHTML;
+		});
+	}
+
+		table.tBodies[0].append(...trBodyArr);
 });
