@@ -1,22 +1,35 @@
 "use strict";
 
-let table = document.getElementById('grid');
-let trBody = table.querySelectorAll('tbody>tr');
-let trBodyArr = Array.from(trBody);
+let tooltip;
 
-document.addEventListener('click', (event) => {
-	let tar = event.target.closest('[data-type]');
+document.addEventListener('mouseover', (event) => {
+	let tar = event.target.closest('[data-tooltip]');
 	if (!tar) return;
 
-	if (tar.dataset.type == 'string') {
-		trBodyArr.sort( (a, b) => {
-			return a.lastElementChild.innerHTML > b.lastElementChild.innerHTML ? 1 : -1;
-		});
-	} else {
-		trBodyArr.sort( (a, b) => {
-			return a.firstElementChild.innerHTML - b.firstElementChild.innerHTML;
-		});
-	}
+	tooltip = document.createElement('div');
+	tooltip.className = 'tooltip';
+	tooltip.innerHTML = tar.dataset.tooltip;
+	document.body.append(tooltip);
 
-		table.tBodies[0].append(...trBodyArr);
+	positioning(tooltip, tar);
 });
+
+document.addEventListener('mouseout', () => {
+	if (tooltip) {
+		tooltip.remove();
+		tooltip = null;
+	}
+});
+
+function positioning(elem, anchor) {
+	let coordAnchor = anchor.getBoundingClientRect();
+
+	let left = coordAnchor.left + coordAnchor.width / 2 - elem.offsetWidth / 2;
+	if (left < 0) left = 0;
+
+	let top = coordAnchor.top - elem.offsetHeight - 5;
+	if (top < 0) top = coordAnchor.bottom + 5;
+
+	elem.style.left = left + 'px';
+	elem.style.top = top + 'px';
+}
