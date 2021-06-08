@@ -1,11 +1,12 @@
 "use strict";
 
-let contents = document.getElementById('contents');
+let largeImg = document.getElementById('largeImg');
 
-contents.addEventListener('click', (event) => {
-	let tar = event.target.closest('a');
+document.addEventListener('click', (event) => {
+	let tar = event.target.closest('#thumbs a');
 	if (!tar) return;
 
-	let href = tar.href;
-	if ( !confirm(`Перейти на страницу ${href} ?`) ) event.preventDefault();
-})
+	event.preventDefault();
+	largeImg.src = tar.href;
+	largeImg.alt = tar.title;
+});
