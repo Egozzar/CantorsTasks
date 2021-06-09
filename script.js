@@ -1,12 +1,22 @@
 "use strict";
 
-let largeImg = document.getElementById('largeImg');
+let ul = document.getElementById('ul');
+let lis = ul.querySelectorAll('li');
+let pressed;
 
-document.addEventListener('click', (event) => {
-	let tar = event.target.closest('#thumbs a');
+ul.addEventListener('mousedown', (event) => {
+	event.preventDefault();
+});
+
+ul.addEventListener('click', (event) => {
+	let tar = event.target.closest('li');
 	if (!tar) return;
 
-	event.preventDefault();
-	largeImg.src = tar.href;
-	largeImg.alt = tar.title;
+	let ctrl = event.ctrlKey || event.metaKey;
+	if (pressed && !ctrl) {
+		lis.forEach(li => li.classList.remove('selected'));
+	}
+
+	pressed = tar;
+	pressed.classList.toggle('selected');
 });
