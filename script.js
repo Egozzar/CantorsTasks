@@ -1,26 +1,13 @@
 "use strict";
 
-function runOnKeys(func, ...args) {
-	let sum = 0;
+let arrow = document.getElementById('arrowTop');
+arrow.hidden = true;
 
-	document.addEventListener('keydown', (event) => {
-		if ( args.includes(event.code) && !event.repeat ) sum++;
+window.addEventListener('scroll', () => {
+	let displayHight = document.documentElement.clientHeight;
+	arrow.hidden = pageYOffset < displayHight;
+});
 
-		if (sum == args.length) {
-			sum = 0;
-			func();
-		}
-	});
-
-	document.addEventListener('keyup', (event) => {
-		if ( args.includes(event.code) ) sum--;
-
-		sum = sum < 0 ? 0 : sum;
-	});
-}
-
-runOnKeys(
-	() => alert("Привет!"),
-	"KeyQ",
-	"KeyW"
-);
+arrow.addEventListener('click', () => {
+	document.documentElement.scrollTop = 0;
+});
