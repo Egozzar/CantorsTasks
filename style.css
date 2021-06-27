@@ -1,36 +1,18 @@
 body {
-/*	display: flex;
-	justify-content: center;
-	align-items: center;*/
-	font-size: 2rem;
+	font-size: 1.5rem;
 	background-color: #FFFDD0;
 	color: #734A12;
-}
-body,
-html {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 
-#matrix {
-	width: 500px;
-	margin: auto;
-	overflow: auto;
-	text-align: justify;
-}
-
-#arrowTop {
-	height: 9px;
-	width: 14px;
-	color: green;
-	position: fixed;
-	top: 10px;
-	left: 10px;
-	cursor: pointer;
-}
-
-#arrowTop::before {
-	content: '▲';
+select {
+	background-color: #734A12;
+	color: #FFFDD0;
+	width: 250px;
+	height: 60px;
+	font-size: 2rem;
+	padding-left: 10px;
 }

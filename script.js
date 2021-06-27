@@ -1,13 +1,13 @@
 "use strict";
 
-let arrow = document.getElementById('arrowTop');
-arrow.hidden = true;
+let genres = document.getElementById('genres');
+let selected = genres.options[genres.selectedIndex];
 
-window.addEventListener('scroll', () => {
-	let displayHight = document.documentElement.clientHeight;
-	arrow.hidden = pageYOffset < displayHight;
-});
+alert(selected.innerHTML);
+alert(selected.value);
 
-arrow.addEventListener('click', () => {
-	document.documentElement.scrollTop = 0;
-});
+let option = new Option('Классика', 'classic', true, true);
+
+setTimeout(() => {
+	genres.append(option);
+}, 1500);
