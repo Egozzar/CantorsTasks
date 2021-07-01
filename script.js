@@ -1,13 +1,24 @@
 "use strict";
 
-let genres = document.getElementById('genres');
-let selected = genres.options[genres.selectedIndex];
+let div = document.getElementById('view');
+div.tabIndex = -1;
 
-alert(selected.innerHTML);
-alert(selected.value);
+let edit = document.createElement('textarea');
+edit.className = 'edit';
 
-let option = new Option('Классика', 'classic', true, true);
+div.addEventListener('focus', () => {
+	div.replaceWith(edit);
+	edit.focus();
+});
 
-setTimeout(() => {
-	genres.append(option);
-}, 1500);
+edit.addEventListener('blur', () => {
+	div.innerHTML = edit.value;
+	edit.replaceWith(div);
+});
+
+edit.addEventListener('keydown', event => {
+	if (event.code != 'Enter') return;
+
+	div.innerHTML = edit.value;
+	edit.replaceWith(div);
+});
